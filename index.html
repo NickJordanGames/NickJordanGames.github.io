@@ -9,9 +9,9 @@
   body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #000;
     color: #fff;
     overflow-x: hidden;
+    background: radial-gradient(circle at 50% 20%, #0a0a0a, #000 60%, #000);
   }
 
   canvas {
@@ -41,6 +41,12 @@
     font-size: 22px;
     color: #aaa;
     margin-top: 5px;
+    letter-spacing: 2px;
+  }
+
+  p {
+    color: #aaa;
+    margin-top: 10px;
   }
 
   section {
@@ -48,6 +54,10 @@
     margin: auto;
     padding: 50px 20px;
     text-align: center;
+  }
+
+  h2 {
+    margin-top: 70px;
   }
 
   .btn {
@@ -78,6 +88,7 @@
     text-align: center;
     padding: 50px;
     color: #555;
+    font-size: 14px;
   }
 </style>
 </head>
@@ -91,17 +102,22 @@
   <p>Solo Game Developer • Creating games with passion</p>
 </header>
 
+<!-- SOCIALS -->
 <section>
   <h2>Socials</h2>
+
   <a class="btn" href="https://www.instagram.com/nick_jordan_games/" target="_blank">Instagram</a>
   <a class="btn" href="https://www.tiktok.com/@nickjordangames" target="_blank">TikTok</a>
   <a class="btn" href="https://www.youtube.com/@Nick_Jordan_Games" target="_blank">YouTube</a>
   <a class="btn" href="https://discord.gg/Rv7dDd9PSw" target="_blank">Discord</a>
 </section>
 
+<!-- GAME -->
 <section>
   <h2>My First Game</h2>
+
   <div class="game-title">Parnitha Patient 66</div>
+
   <p>Survival horror experience set in a mysterious environment.</p>
 
   <div>
@@ -111,11 +127,23 @@
   </div>
 </section>
 
+<!-- SUPPORT -->
 <section>
   <h2>Support Development</h2>
-  <a class="btn" href="https://ko-fi.com/nickjordangames" target="_blank">
-    ❤️ Support My Next Game
-  </a>
+
+  <p style="max-width:600px; margin:auto;">
+    If you enjoy my games and want to support future projects, you can help me create more experiences.
+  </p>
+
+  <div style="margin-top:30px;">
+    <a class="btn" href="https://ko-fi.com/nickjordangames" target="_blank">
+      ❤️ Support My Next Game
+    </a>
+  </div>
+
+  <p style="margin-top:15px; font-size:14px; color:#777;">
+    Thank you for your support 🎮
+  </p>
 </section>
 
 <footer>
@@ -131,30 +159,81 @@ canvas.height = window.innerHeight;
 
 let particles = [];
 
-for (let i = 0; i < 60; i++) {
-  particles.push({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    r: Math.random() * 2,
-    dx: (Math.random() - 0.5) * 0.5,
-    dy: (Math.random() - 0.5) * 0.5
-  });
+const LAYERS = 3;
+
+function createParticle(x, y, burst = false) {
+  return {
+    x: x ?? Math.random() * canvas.width,
+    y: y ?? Math.random() * canvas.height,
+    r: Math.random() * 2.2,
+    dx: burst ? (Math.random() - 0.5) * 5 : (Math.random() - 0.5) * 0.5,
+    dy: burst ? (Math.random() - 0.5) * 5 : (Math.random() - 0.5) * 0.5,
+    layer: Math.floor(Math.random() * LAYERS),
+    life: burst ? 80 : null
+  };
 }
+
+// initial fireflies
+for (let i = 0; i < 120; i++) {
+  particles.push(createParticle());
+}
+
+// click/touch burst
+function burst(x, y) {
+  for (let i = 0; i < 25; i++) {
+    particles.push(createParticle(x, y, true));
+  }
+}
+
+window.addEventListener("click", e => burst(e.clientX, e.clientY));
+
+window.addEventListener("touchstart", e => {
+  const t = e.touches[0];
+  burst(t.clientX, t.clientY);
+});
 
 function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  particles.forEach(p => {
+  particles.forEach((p, i) => {
+
     p.x += p.dx;
     p.y += p.dy;
 
-    if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
-    if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+    if (p.life) {
+      p.life--;
+      if (p.life <= 0) {
+        particles.splice(i, 1);
+        return;
+      }
+    }
+
+    if (p.x < 0) p.x = canvas.width;
+    if (p.x > canvas.width) p.x = 0;
+    if (p.y < 0) p.y = canvas.height;
+    if (p.y > canvas.height) p.y = 0;
+
+    let opacity = 0.15;
+    let size = p.r;
+
+    if (p.layer === 1) {
+      opacity = 0.35;
+      size = p.r * 1.2;
+    }
+
+    if (p.layer === 2) {
+      opacity = 0.6;
+      size = p.r * 1.6;
+    }
+
+    if (p.life) {
+      opacity = p.life / 80;
+    }
 
     ctx.beginPath();
-    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-    ctx.fillStyle = "#00e5ff";
-    ctx.shadowBlur = 10;
+    ctx.arc(p.x, p.y, size, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(0, 229, 255, ${opacity})`;
+    ctx.shadowBlur = 12;
     ctx.shadowColor = "#00e5ff";
     ctx.fill();
   });
