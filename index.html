@@ -14,34 +14,42 @@
     overflow-x: hidden;
   }
 
+  /* animated background */
   .bg {
     position: fixed;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at top, rgba(0, 229, 255, 0.12), transparent 60%);
+    background: radial-gradient(circle at top, rgba(0,229,255,0.15), transparent 60%);
     animation: pulse 6s infinite alternate;
     z-index: -1;
   }
 
   @keyframes pulse {
-    from { transform: scale(1); opacity: 0.7; }
-    to { transform: scale(1.1); opacity: 1; }
+    from { transform: scale(1); opacity: 0.6; }
+    to { transform: scale(1.15); opacity: 1; }
   }
 
   header {
     text-align: center;
-    padding: 100px 20px 40px;
+    padding: 110px 20px 50px;
   }
 
   h1 {
-    font-size: 52px;
+    font-size: 56px;
     margin: 0;
     letter-spacing: 2px;
   }
 
+  /* 🔥 animated glow title */
   .nick {
     color: #00e5ff;
-    text-shadow: 0 0 20px #00e5ff;
+    text-shadow: 0 0 10px #00e5ff, 0 0 25px #00e5ff;
+    animation: glowPulse 2.5s infinite alternate;
+  }
+
+  @keyframes glowPulse {
+    from { text-shadow: 0 0 10px #00e5ff; }
+    to { text-shadow: 0 0 25px #00e5ff, 0 0 50px #00e5ff; }
   }
 
   .games {
@@ -49,52 +57,58 @@
     font-size: 22px;
     color: #aaa;
     margin-top: 5px;
+    letter-spacing: 3px;
   }
 
   p {
     color: #aaa;
-    margin-top: 10px;
+    margin-top: 12px;
   }
 
   section {
     max-width: 900px;
     margin: auto;
-    padding: 40px 20px;
+    padding: 50px 20px;
     text-align: center;
   }
 
   h2 {
-    margin-top: 60px;
+    margin-top: 70px;
+    font-weight: normal;
   }
 
+  /* 🔥 premium neon buttons */
   .btn {
     display: inline-block;
-    margin: 8px;
-    padding: 12px 18px;
+    margin: 10px;
+    padding: 14px 22px;
     border: 1px solid #00e5ff;
-    border-radius: 10px;
-    transition: 0.2s;
+    border-radius: 12px;
+    transition: 0.25s;
     color: #fff;
     text-decoration: none;
+    position: relative;
   }
 
   .btn:hover {
     background: #00e5ff;
     color: #000;
-    transform: scale(1.05);
-    box-shadow: 0 0 15px #00e5ff, 0 0 30px rgba(0, 229, 255, 0.5);
+    transform: scale(1.08);
+    box-shadow: 0 0 15px #00e5ff, 0 0 40px rgba(0,229,255,0.6);
   }
 
+  /* 🔴 horror glow game title */
   .game-title {
-    font-size: 24px;
+    font-size: 26px;
     font-weight: bold;
     color: #ff3b3b;
-    margin-top: 10px;
+    margin-top: 15px;
+    text-shadow: 0 0 10px rgba(255,0,0,0.5);
   }
 
   footer {
     text-align: center;
-    padding: 40px;
+    padding: 50px;
     color: #555;
     font-size: 14px;
   }
@@ -106,7 +120,7 @@
 <div class="bg"></div>
 
 <header>
-  <h1><span class="nick">Nick Jordan</span><br><span class="games">Games</span></h1>
+  <h1><span class="nick">Nick Jordan</span><br><span class="games">GAMES</span></h1>
   <p>Solo Game Developer • Creating games with passion</p>
 </header>
 
@@ -128,29 +142,29 @@
 
   <p>Survival horror experience set in a mysterious environment.</p>
 
-  <div style="margin-top:20px;">
+  <div style="margin-top:25px;">
     <a class="btn" href="https://store.steampowered.com/app/4056910/Parnitha_Patient_66/" target="_blank">Steam</a>
     <a class="btn" href="https://nick-jordan.itch.io/parnitha-patient-66" target="_blank">Itch.io</a>
     <a class="btn" href="https://www.dailyindiegame.com/site_gamelisting_4056910.html" target="_blank">Daily Indie Game</a>
   </div>
 </section>
 
-<!-- KOFI SUPPORT -->
+<!-- SUPPORT -->
 <section>
   <h2>Support Development</h2>
 
-  <p style="max-width:600px; margin:auto; margin-top:10px;">
+  <p style="max-width:600px; margin:auto;">
     If you enjoy my games and want to support future projects, you can help me continue creating new experiences.
   </p>
 
-  <div style="margin-top:25px;">
+  <div style="margin-top:30px;">
     <a class="btn" href="https://ko-fi.com/nickjordangames" target="_blank">
       ❤️ Support My Next Game
     </a>
   </div>
 
   <p style="margin-top:15px; font-size:14px; color:#777;">
-    Thank you for your support 🎮
+    Every bit of support helps — thank you 🎮
   </p>
 </section>
 
