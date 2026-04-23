@@ -14,6 +14,7 @@
     overflow-x: hidden;
   }
 
+  /* background glow */
   .bg {
     position: fixed;
     width: 100%;
@@ -46,9 +47,9 @@
 
   .games {
     display: block;
-    margin-top: 5px;
     font-size: 22px;
     color: #aaa;
+    margin-top: 5px;
   }
 
   p {
@@ -65,32 +66,9 @@
 
   h2 {
     margin-top: 60px;
-    color: #fff;
   }
 
-  .card {
-    border: 1px solid #222;
-    padding: 20px;
-    border-radius: 15px;
-    margin-top: 20px;
-    background: #0a0a0a;
-  }
-
-  .game-title {
-    color: #ff3b3b;
-    font-weight: bold;
-  }
-
-  a {
-    color: #00e5ff;
-    text-decoration: none;
-  }
-
-  a:hover {
-    text-decoration: underline;
-  }
-
-  /* 🔥 NEON BUTTONS FIXED */
+  /* buttons */
   .btn {
     display: inline-block;
     margin: 8px;
@@ -98,8 +76,8 @@
     border: 1px solid #00e5ff;
     border-radius: 10px;
     transition: 0.2s;
-    box-shadow: 0 0 0 transparent;
     color: #fff;
+    text-decoration: none;
   }
 
   .btn:hover {
@@ -107,6 +85,14 @@
     color: #000;
     transform: scale(1.05);
     box-shadow: 0 0 15px #00e5ff, 0 0 30px rgba(0, 229, 255, 0.5);
+  }
+
+  /* game title (no box, no frame) */
+  .game-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff3b3b;
+    margin-top: 10px;
   }
 
   footer {
@@ -127,31 +113,32 @@
   <p>Solo Game Developer • Creating unique gameplay experiences</p>
 </header>
 
+<!-- SOCIALS -->
 <section>
   <h2>Socials</h2>
+
   <a class="btn" href="https://www.instagram.com/nick_jordan_games/" target="_blank">Instagram</a>
   <a class="btn" href="https://www.tiktok.com/@nickjordangames" target="_blank">TikTok</a>
   <a class="btn" href="https://www.youtube.com/@Nick_Jordan_Games" target="_blank">YouTube</a>
   <a class="btn" href="https://discord.gg/Rv7dDd9PSw" target="_blank">Discord</a>
 </section>
 
+<!-- GAME + SHOP (COMBINED) -->
 <section>
   <h2>My First Game</h2>
 
-  <div class="card">
-    <div class="game-title">Parnitha Patient 66</div>
-    <p>Survival horror experience set in a mysterious environment.</p>
+  <div class="game-title">Parnitha Patient 66</div>
+
+  <p>Survival horror experience set in a mysterious environment.</p>
+
+  <div style="margin-top:20px;">
+    <a class="btn" href="https://store.steampowered.com/app/4056910/Parnitha_Patient_66/" target="_blank">Steam</a>
+    <a class="btn" href="https://nick-jordan.itch.io/parnitha-patient-66" target="_blank">Itch.io</a>
+    <a class="btn" href="https://www.dailyindiegame.com/site_gamelisting_4056910.html" target="_blank">Daily Indie Game</a>
   </div>
 </section>
 
-<section>
-  <h2>Shop Now</h2>
-
-  <a class="btn" href="https://store.steampowered.com/app/4056910/Parnitha_Patient_66/" target="_blank">Steam</a>
-  <a class="btn" href="https://nick-jordan.itch.io/parnitha-patient-66" target="_blank">Itch.io</a>
-  <a class="btn" href="https://www.dailyindiegame.com/site_gamelisting_4056910.html" target="_blank">Daily Indie Game</a>
-</section>
-
+<!-- STREAMERS -->
 <section>
   <h2>Are you a streamer?</h2>
 
@@ -160,6 +147,7 @@
   </a>
 </section>
 
+<!-- SUPPORT -->
 <section>
   <h2>Support</h2>
 
